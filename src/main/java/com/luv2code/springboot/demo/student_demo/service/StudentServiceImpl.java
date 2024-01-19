@@ -41,4 +41,22 @@ public class StudentServiceImpl implements StudentService{
         return studentRepository.save(existingStudent);
 
     }
+
+    @Override
+    public void deleteStudentId(Long id){
+        studentRepository.deleteById(id);
+    }
+
+
+    @Override
+    public List<Student> getStudentsByName(String name) {
+
+        List<Student> allStudents = studentRepository.findByName(name);
+
+        for (Student s:allStudents) {
+            s.setName(s.getName() + " temeharayna eyu");
+        }
+
+        return allStudents;
+    }
 }

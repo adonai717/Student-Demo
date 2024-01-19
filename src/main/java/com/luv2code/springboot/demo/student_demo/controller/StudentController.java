@@ -3,7 +3,6 @@ package com.luv2code.springboot.demo.student_demo.controller;
 
 import com.luv2code.springboot.demo.student_demo.model.Student;
 import com.luv2code.springboot.demo.student_demo.service.StudentService;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,4 +47,19 @@ public class StudentController {
         Student updatedStudent = studentService.updateStudent(student);
         return ResponseEntity.ok(updatedStudent);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        log.info("Deleting a Student by id");
+        studentService.deleteStudentId(id);
+    }
+
+    @GetMapping("/getByName/{name}")
+    public List<Student> getStudentsByName(@PathVariable String name) {
+        log.info("Getting students by name");
+
+        return studentService.getStudentsByName(name);
+    }
+
+
 }
